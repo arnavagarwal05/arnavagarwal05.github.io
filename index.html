@@ -441,6 +441,29 @@
     margin: 0 0 6px;
   }
   .pub-note { margin: 0; font-size: 14px; color: var(--ink-dim); }
+  .pub-authors {
+    margin: 0 0 6px;
+    font-size: 13.5px;
+    color: var(--ink-mid);
+  }
+  .pub-authors b { color: var(--ink); font-weight: 600; }
+  .pub-links { margin-top: 9px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .pub-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    color: var(--ink-mid);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 4px 9px;
+    background: var(--surface-2);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .pub-links a:hover { color: var(--copper); border-color: var(--copper); text-decoration: none; }
+  .pub-links svg { width: 12px; height: 12px; flex: none; }
 
   /* ---- experience ---- */
   .xp { display: grid; gap: 0; }
@@ -762,19 +785,34 @@
       <div class="pub">
         <span class="pub-num">[1]</span>
         <div>
-          <h4 class="pub-title">Hardware-Aware Semantic Segmentation Engine for On-Chip Retinal Prosthesis Navigation</h4>
+          <h4 class="pub-title">A Hardware-Aware Deep-Learning based Navigation for On-Chip Retinal Prosthesis</h4>
           <p class="pub-venue">IEEE AICAS 2026 &middot; lecture presentation</p>
-          <p class="pub-note">Scene understanding that runs entirely on the implant chip itself, with no phone and no cloud, inside the memory and power budget of a device worn on a pair of glasses. A. Agarwal*, D. Sawke* et al. &nbsp;*Equal contribution.</p>
+          <p class="pub-authors"><b>Arnav Agarwal</b>*, Daksh Sawke*, Laxmeesha Somappa &nbsp;<span style="color:var(--ink-dim)">*equal contribution</span></p>
+          <p class="pub-note">NanoSeg, a 12,880-parameter network that reads a scene into four navigation classes (traversable ground, obstacle, hazard, background) entirely on the implant chip, with no phone and no cloud. It fits in 29&nbsp;KB of on-chip memory and runs in 67&nbsp;ms, inside the budget of something worn on a pair of glasses.</p>
+          <div class="pub-links">
+            <a href="aicas2026.pdf">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>
+              PDF
+            </a>
+          </div>
         </div>
       </div>
       <div class="pub">
         <span class="pub-num">[2]</span>
         <div>
-          <h4 class="pub-title">On-Chip Streaming Fixed-Point Vision Processing Pipeline for Epiretinal Prostheses</h4>
+          <h4 class="pub-title">An On-Chip Streaming Fixed-Point Vision Processing Pipeline for Epiretinal Prostheses</h4>
           <p class="pub-venue">IEEE APCCAS 2026 &middot; lecture presentation</p>
-          <p class="pub-note">Turning a live camera feed into retinal stimulation signals entirely on-chip with no frame buffer, keeping latency low enough for a person to navigate with it. A. Agarwal*, D. Sawke* et al. &nbsp;*Equal contribution.</p>
+          <p class="pub-authors"><b>Arnav Agarwal</b>*, Daksh Sawke*, Laxmeesha Somappa &nbsp;<span style="color:var(--ink-dim)">*equal contribution</span></p>
+          <p class="pub-note">A seven-stage pipeline that turns a live camera feed into retinal stimulation signals with no frame buffer anywhere in the datapath. Implemented in TSMC 65&nbsp;nm CMOS at 0.81&nbsp;mm&sup2; and 9.5&nbsp;mW, and evaluated on what the user would actually perceive rather than on the image alone.</p>
+          <div class="pub-links">
+            <a href="apccas2026.pdf">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>
+              PDF
+            </a>
+          </div>
         </div>
       </div>
+      <p class="pub-note" style="margin-top:14px">Both papers are accepted and will be presented in 2026. The PDFs above are the accepted author versions.</p>
     </div>
   </section>
 
