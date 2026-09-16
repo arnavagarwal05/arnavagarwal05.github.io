@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://arnu123.github.io/sitemap.xml
+Sitemap: https://arnavagarwal05.github.io/sitemap.xml
