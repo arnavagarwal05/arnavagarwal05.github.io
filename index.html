@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Arnav Agarwal. Electrical Engineering at IIT Bombay, working where machine learning meets silicon.">
+<meta property="og:title" content="Arnav Agarwal">
+<meta property="og:description" content="Electrical Engineering at IIT Bombay, working where machine learning meets silicon.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9889;</text></svg>">
+<title>Arnav Agarwal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+  /* ---- tokens: dark-first ---- */
+  :root {
+    --ground:    #101318;
+    --surface:   #171B22;
+    --surface-2: #1C2129;
+    --line:      #272D37;
+    --line-soft: #1F242C;
+    --ink:       #E8EBF0;
+    --ink-mid:   #AAB3C2;
+    --ink-dim:   #808A9A;
+    --copper:    #D89158;
+    --copper-ink:#101318;
+    --teal:      #63B3AA;
+
+    --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    --measure: 62ch;
+    --shell: 940px;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground:    #F7F6F3;
+      --surface:   #FFFFFF;
+      --surface-2: #FBFAF8;
+      --line:      #E0DCD4;
+      --line-soft: #EBE8E2;
+      --ink:       #191C21;
+      --ink-mid:   #4E5560;
+      --ink-dim:   #6E7683;
+      --copper:    #9C5620;
+      --copper-ink:#FFFFFF;
+      --teal:      #2C6F69;
+    }
+  }
+
+  :root[data-theme="light"] {
+    --ground:    #F7F6F3;
+    --surface:   #FFFFFF;
+    --surface-2: #FBFAF8;
+    --line:      #E0DCD4;
+    --line-soft: #EBE8E2;
+    --ink:       #191C21;
+    --ink-mid:   #4E5560;
+    --ink-dim:   #6E7683;
+    --copper:    #9C5620;
+    --copper-ink:#FFFFFF;
+    --teal:      #2C6F69;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell {
+    max-width: var(--shell);
+    margin: 0 auto;
+    padding-inline: 24px;
+    padding-block: 0 88px;
+  }
+
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  a:focus-visible,
+  .pill:focus-visible {
+    outline: 2px solid var(--copper);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1, h2, h3, h4 { text-wrap: balance; margin: 0; }
+
+  /* ---- hero ---- */
+  .hero { padding-block: 72px 0; }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 190px;
+    gap: 44px;
+    align-items: start;
+  }
+
+  .portrait {
+    width: 190px;
+    aspect-ratio: 1 / 1.12;
+    max-width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--surface);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+  .portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .portrait .monogram {
+    font-family: var(--mono);
+    font-size: 40px;
+    letter-spacing: 0.06em;
+    color: var(--ink-dim);
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin: 0 0 18px;
+  }
+
+  h1 {
+    font-size: clamp(38px, 7vw, 58px);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+  }
+
+  .lead {
+    font-size: clamp(18px, 2.4vw, 21px);
+    line-height: 1.5;
+    color: var(--ink-mid);
+    max-width: 34ch;
+    margin: 22px 0 0;
+  }
+  .lead strong { color: var(--ink); font-weight: 500; }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--sans);
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 10px 16px;
+    background: var(--surface);
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  }
+  .pill svg { width: 16px; height: 16px; flex: none; }
+  .pill:hover {
+    color: var(--copper);
+    border-color: var(--copper);
+    text-decoration: none;
+  }
+  .pill.primary {
+    background: var(--copper);
+    border-color: var(--copper);
+    color: var(--copper-ink);
+  }
+  .pill.primary:hover {
+    background: transparent;
+    color: var(--copper);
+  }
+
+  /* datasheet spec strip */
+  .spec {
+    margin: 44px 0 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  }
+  .spec > div {
+    padding: 16px 20px 16px 0;
+    border-right: 1px solid var(--line-soft);
+  }
+  .spec > div:last-child { border-right: 0; }
+  .spec dt {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin-bottom: 5px;
+  }
+  .spec dd {
+    margin: 0;
+    font-size: 14px;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- sections ---- */
+  section { padding-block: 60px 0; }
+
+  .section-title {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--copper);
+    font-weight: 500;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 28px;
+  }
+
+  /* ---- now ---- */
+  .now { display: grid; gap: 2px; }
+  .now-item {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line-soft);
+    align-items: baseline;
+  }
+  .now-item:last-child { border-bottom: 0; }
+  .now-when {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-dim);
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+  .now-what { margin: 0; color: var(--ink-mid); }
+  .now-what strong { color: var(--ink); font-weight: 500; }
+
+  /* ---- work tracks ---- */
+  .track { margin-bottom: 44px; }
+  .track:last-child { margin-bottom: 0; }
+
+  .track-title {
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .track-note {
+    color: var(--ink-dim);
+    font-size: 14px;
+    margin: 0 0 20px;
+    max-width: var(--measure);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.15s ease;
+  }
+  .card:hover { border-color: var(--ink-dim); }
+
+  .card h4 {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+  .card-meta {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-dim);
+    letter-spacing: 0.03em;
+    display: block;
+    margin-top: 4px;
+  }
+  .card p {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-mid);
+    flex: 1;
+  }
+
+  .figs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .figs li {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--ink-mid);
+    background: var(--surface-2);
+    border: 1px solid var(--line-soft);
+    border-radius: 3px;
+    padding: 3px 8px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .figs li b { color: var(--copper); font-weight: 500; }
+
+  /* ---- built / ventures ---- */
+  .built { display: grid; gap: 0; }
+  .built-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 14px 22px;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--line-soft);
+    align-items: start;
+  }
+  .built-row:last-child { border-bottom: 0; }
+  .built-name {
+    margin: 0 0 5px;
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .built-desc {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-mid);
+    max-width: 58ch;
+  }
+  .badge {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--copper);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 4px 9px;
+    white-space: nowrap;
+    background: var(--surface);
+  }
+
+  /* ---- publications ---- */
+  .pubs { display: grid; gap: 0; }
+  .pub {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--line-soft);
+    display: grid;
+    grid-template-columns: 26px 1fr;
+    gap: 14px;
+  }
+  .pub:last-child { border-bottom: 0; }
+  .pub-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-dim);
+    padding-top: 3px;
+  }
+  .pub-title {
+    font-size: 15.5px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0 0 6px;
+  }
+  .pub-venue {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--copper);
+    margin: 0 0 6px;
+  }
+  .pub-note { margin: 0; font-size: 14px; color: var(--ink-dim); }
+
+  /* ---- experience ---- */
+  .xp { display: grid; gap: 0; }
+  .xp-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--line-soft);
+    align-items: baseline;
+  }
+  .xp-row:last-child { border-bottom: 0; }
+  .xp-role { margin: 0; font-size: 15px; }
+  .xp-role b { font-weight: 600; }
+  .xp-org { color: var(--ink-mid); }
+  .xp-when {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-dim);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---- prose ---- */
+  .prose p {
+    max-width: var(--measure);
+    margin: 0 0 18px;
+    color: var(--ink-mid);
+    font-size: 16.5px;
+    line-height: 1.68;
+  }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose strong { color: var(--ink); font-weight: 500; }
+
+  /* ---- contact ---- */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 14px;
+    margin-top: 4px;
+  }
+  .contact-card {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 18px;
+    background: var(--surface);
+    transition: border-color 0.15s ease;
+  }
+  .contact-card:hover { border-color: var(--copper); }
+  .contact-card .k {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 8px;
+  }
+  .contact-card .k svg {
+    width: 14px;
+    height: 14px;
+    flex: none;
+    color: var(--copper);
+  }
+  .contact-card .v {
+    font-size: 15px;
+    color: var(--ink);
+    word-break: break-word;
+  }
+  .contact-card:hover .v { color: var(--teal); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-dim);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 24px;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 680px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 24px; }
+    .hero-text { order: 2; }
+    .portrait { order: 1; width: 132px; }
+  }
+
+  @media (max-width: 560px) {
+    .hero { padding-block: 48px 0; }
+    .spec > div { border-right: 0; border-bottom: 1px solid var(--line-soft); }
+    .spec > div:last-child { border-bottom: 0; }
+    .now-item { grid-template-columns: 1fr; gap: 4px; }
+    .xp-row { grid-template-columns: 1fr; gap: 3px; }
+    .built-row { grid-template-columns: 1fr; }
+    .badge { justify-self: start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <header class="hero">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">Electrical Engineering &middot; IIT Bombay</p>
+        <h1>Arnav Agarwal</h1>
+        <p class="lead">
+          I build at the line where <strong>machine learning meets silicon</strong>, where a model
+          stops being a notebook experiment and has to run inside a power budget.
+        </p>
+
+        <nav class="links" aria-label="Profiles and contact">
+          <a class="pill primary" href="mailto:22b3917@iitb.ac.in">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 7 10 6 10-6"></path></svg>
+            Email me
+          </a>
+          <a class="pill" href="https://www.linkedin.com/in/arnav-agarwal-a77b15253/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path></svg>
+            LinkedIn
+          </a>
+          <a class="pill" href="https://github.com/arnu123" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"></path></svg>
+            GitHub
+          </a>
+          <a class="pill" href="cv.pdf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h4"></path></svg>
+            Résumé
+          </a>
+        </nav>
+      </div>
+
+      <div class="portrait">
+        <img src="portrait.jpg" alt="Arnav Agarwal" width="420" height="470">
+      </div>
+    </div>
+
+    <dl class="spec">
+      <div>
+        <dt>Program</dt>
+        <dd>B.Tech + M.Tech, EE &middot; 2022&ndash;2027</dd>
+      </div>
+      <div>
+        <dt>Focus</dt>
+        <dd>ML &middot; Digital systems &middot; Edge AI</dd>
+      </div>
+      <div>
+        <dt>Publications</dt>
+        <dd>2 &times; IEEE &middot; AICAS, APCCAS 2026</dd>
+      </div>
+      <div>
+        <dt>Based in</dt>
+        <dd>Mumbai, India</dd>
+      </div>
+    </dl>
+  </header>
+
+  <section id="now">
+    <h2 class="section-title">Now</h2>
+    <div class="now">
+      <div class="now-item">
+        <span class="now-when">Thesis</span>
+        <p class="now-what">Designing <strong>a chip that will go to fabrication</strong>: a vision processor built from the logic up, working toward the version that gets manufactured.</p>
+      </div>
+      <div class="now-item">
+        <span class="now-when">Under review</span>
+        <p class="now-what">Submitted a paper on <strong>inferring stochastic differential equations</strong> to the NeurIPS 2026 STODY workshop, from my work at IBM Research.</p>
+      </div>
+      <div class="now-item">
+        <span class="now-when">Presenting</span>
+        <p class="now-what">Two papers at <strong>IEEE AICAS and APCCAS 2026</strong>, including a lecture presentation at APCCAS.</p>
+      </div>
+      <div class="now-item">
+        <span class="now-when">Teaching</span>
+        <p class="now-what">TA for <strong>EE340 Communications Lab</strong> at IIT Bombay, running weekly GNURadio SDR and hardware sessions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <h2 class="section-title">Selected work</h2>
+
+    <div class="track">
+      <h3 class="track-title">Silicon &amp; systems</h3>
+      <p class="track-note">Processors, accelerators, and custom chips. Once something is manufactured you can&rsquo;t patch it, which changes how you build.</p>
+      <div class="grid">
+
+        <article class="card">
+          <div>
+            <h4>Streaming Vision SoC</h4>
+            <span class="card-meta">M.Tech thesis, IIT Bombay &middot; 2025&ndash;present</span>
+          </div>
+          <p>A custom chip that processes a live camera feed in real time, small and efficient enough to sit inside a wearable device. I&rsquo;m designing it end to end, from the logic down to the physical layout that goes to the factory.</p>
+          <ul class="figs">
+            <li><b>65</b> nm TSMC</li>
+            <li><b>100</b> MHz</li>
+            <li><b>6,778</b> &micro;m&sup2;</li>
+            <li><b>1.14</b> mW</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div>
+            <h4>Superscalar Out-of-Order Processor</h4>
+            <span class="card-meta">EE739, IIT Bombay &middot; 2026</span>
+          </div>
+          <p>A 2-way 16-bit superscalar core in VHDL with full out-of-order execution: reservation stations, reorder buffer, common data bus forwarding, and a two-level branch predictor.</p>
+          <ul class="figs">
+            <li><b>2</b> instr/cycle</li>
+            <li><b>16</b>-entry ROB</li>
+            <li>VHDL</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div>
+            <h4>Spiking Neural Prefetcher</h4>
+            <span class="card-meta">CS683, IIT Bombay &middot; 2025</span>
+          </div>
+          <p>Extended the PATHFINDER prefetcher in ChampSim with a spiking neural network gating predictions by confidence, falling back to load-value prediction when the SNN is unsure.</p>
+          <ul class="figs">
+            <li><b>2&times;</b> SNN accuracy</li>
+            <li><b>36K&rarr;14.5K</b> preds</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div>
+            <h4>Real-Time ADAS Segmentation on FPGA</h4>
+            <span class="card-meta">EE712, IIT Bombay &middot; 2026</span>
+          </div>
+          <p>Road-scene segmentation deployed as custom programmable-logic IP on a PYNQ-Z2, with INT8 quantization cutting weight memory 4&times; to fit the on-chip budget.</p>
+          <ul class="figs">
+            <li><b>11K</b> params</li>
+            <li><b>87%</b> BRAM</li>
+            <li>XC7Z020</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+
+    <div class="track">
+      <h3 class="track-title">Machine learning</h3>
+      <p class="track-note">Models and the systems that run them: generative modelling, inference performance, and problems where the data or the compute is the binding constraint.</p>
+      <div class="grid">
+
+        <article class="card">
+          <div>
+            <h4>Learning Stochastic Differential Equations</h4>
+            <span class="card-meta">IBM Research India &middot; 2026</span>
+          </div>
+          <p>A moment-field encoder with a region-based mixture-of-experts decoder that infers stochastic differential equations from observed trajectories, beating a transformer foundation-model baseline on every axis.</p>
+          <ul class="figs">
+            <li><b>27%</b> lower RMSE</li>
+            <li><b>4&times;</b> fewer params</li>
+            <li><b>4&times;</b> faster</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div>
+            <h4>Generative 3D CAD</h4>
+            <span class="card-meta">Arizona State University &middot; 2025</span>
+          </div>
+          <p>Cascaded transformers with a pointer network mapping 2D images into editable B-rep CAD geometry, plus a construction engine that exports real, openable STEP files.</p>
+          <ul class="figs">
+            <li><b>0.72</b> BLEU-4</li>
+            <li><b>94%</b> STEP validity</li>
+            <li><b>500K</b> models</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div>
+            <h4>CUDA Kernels &amp; LLM Inference</h4>
+            <span class="card-meta">CS794, IIT Bombay &middot; 2026</span>
+          </div>
+          <p>FlashAttention written from scratch in CUDA with online-softmax tiling, verified against PyTorch&rsquo;s kernel, alongside KV caching and prefix sharing through a shared radix tree.</p>
+          <ul class="figs">
+            <li><b>6.8&times;</b> matmul speedup</li>
+            <li><b>3.5</b> TFLOPS</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div>
+            <h4>Generative Models for Few-Shot Medical Imaging</h4>
+            <span class="card-meta">EE782, IIT Bombay &middot; 2025</span>
+          </div>
+          <p>Trained CVAE, DCGAN and a U-Net diffusion model from scratch to synthesize dermoscopic images for rare skin-lesion classes, then measured what each actually bought in downstream accuracy.</p>
+          <ul class="figs">
+            <li><b>+6.6</b> pts (diffusion)</li>
+            <li><b>1,200</b> images</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2 class="section-title">Publications</h2>
+    <div class="pubs">
+      <div class="pub">
+        <span class="pub-num">[1]</span>
+        <div>
+          <h4 class="pub-title">Hardware-Aware Semantic Segmentation Engine for On-Chip Retinal Prosthesis Navigation</h4>
+          <p class="pub-venue">IEEE AICAS 2026 &middot; lecture presentation</p>
+          <p class="pub-note">Scene understanding that runs entirely on the implant chip itself, with no phone and no cloud, inside the memory and power budget of a device worn on a pair of glasses. A. Agarwal*, D. Sawke* et al. &nbsp;*Equal contribution.</p>
+        </div>
+      </div>
+      <div class="pub">
+        <span class="pub-num">[2]</span>
+        <div>
+          <h4 class="pub-title">On-Chip Streaming Fixed-Point Vision Processing Pipeline for Epiretinal Prostheses</h4>
+          <p class="pub-venue">IEEE APCCAS 2026 &middot; lecture presentation</p>
+          <p class="pub-note">Turning a live camera feed into retinal stimulation signals entirely on-chip with no frame buffer, keeping latency low enough for a person to navigate with it. A. Agarwal*, D. Sawke* et al. &nbsp;*Equal contribution.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="building">
+    <h2 class="section-title">Built &amp; shipped</h2>
+    <p class="track-note" style="margin-bottom:22px">Work that made it out of the lab and in front of real users.</p>
+    <div class="built">
+
+      <div class="built-row">
+        <div>
+          <h4 class="built-name">Generative AI Intern, Trupeer Technologies Private Limited</h4>
+          <p class="built-desc">Built backend services and a Chrome extension that turns a rough screen recording into a finished product video and written user guide in under five minutes, cutting client onboarding time by 80%. Also built a multilingual document reader with text-to-speech across Indian languages, which was selected for presentation at UNESCO&rsquo;s 46th World Heritage Committee Meeting.</p>
+        </div>
+        <span class="badge">shipped</span>
+      </div>
+
+      <div class="built-row">
+        <div>
+          <h4 class="built-name">Supply Chain Risk ML, GoComet India Private Limited</h4>
+          <p class="built-desc">Built the ML system that reads 100,000+ news and RSS feeds a month and warns logistics customers which of their shipments a port disruption is about to hit, before it does. Ran in production on AWS at 85%+ precision and under two seconds.</p>
+        </div>
+        <span class="badge">in production</span>
+      </div>
+
+      <div class="built-row">
+        <div>
+          <h4 class="built-name">Buddy Booth, HKUST Entrepreneurship Bootcamp</h4>
+          <p class="built-desc">An AI kiosk that picks up early signs of bullying in primary schools. Built and pitched it in a week in Hong Kong as one of three IIT Bombay nominees on India&rsquo;s only delegation.</p>
+        </div>
+        <span class="badge">3rd of 15+</span>
+      </div>
+
+      <div class="built-row">
+        <div>
+          <h4 class="built-name">Searce &times; Google Cloud GenAI Hackathon</h4>
+          <p class="built-desc">A bilingual app that diagnoses crop health from a photo a farmer takes, with weather-aware advice in Hindi or English. Built in 36 hours; we were the youngest team in a field of twenty industry teams.</p>
+        </div>
+        <span class="badge">2nd of 20</span>
+      </div>
+
+      <div class="built-row">
+        <div>
+          <h4 class="built-name">IDEAS incubation &middot; DSSE, IIT Bombay</h4>
+          <p class="built-desc">Selected for Cohort 13 of the institute&rsquo;s startup incubation programme. Earlier, won ENPRO at E-Cell for a freight platform that cut empty return trips by 65%.</p>
+        </div>
+        <span class="badge">incubated</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2 class="section-title">Experience</h2>
+    <div class="xp">
+      <div class="xp-row">
+        <p class="xp-role"><b>AI Researcher</b> &nbsp;<span class="xp-org">IBM Research India</span></p>
+        <span class="xp-when">May&ndash;Aug 2026</span>
+      </div>
+      <div class="xp-row">
+        <p class="xp-role"><b>Generative AI Research Intern</b> &nbsp;<span class="xp-org">Arizona State University</span></p>
+        <span class="xp-when">May&ndash;Jul 2025</span>
+      </div>
+      <div class="xp-row">
+        <p class="xp-role"><b>Machine Learning Engineer</b> &nbsp;<span class="xp-org">GoComet India Private Limited</span></p>
+        <span class="xp-when">Feb&ndash;May 2025</span>
+      </div>
+      <div class="xp-row">
+        <p class="xp-role"><b>Generative AI Engineer</b> &nbsp;<span class="xp-org">Trupeer Technologies Private Limited</span></p>
+        <span class="xp-when">May&ndash;Jul 2024</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">What I&rsquo;m after</h2>
+    <div class="prose">
+      <p>I like problems that don&rsquo;t let you cheat. A network that has to fit in thirty kilobytes, a pipeline that has to hold 100&nbsp;MHz, a chip that either closes timing or doesn&rsquo;t. <strong>The constraint is the interesting part</strong>, because it forces you to understand the thing rather than throw capacity at it.</p>
+
+      <p>What keeps me in a project is <strong>seeing it all the way through</strong>. A result I can measure is good; a working thing someone can pick up and use is better. That&rsquo;s why I keep ending up on problems where the research and the engineering aren&rsquo;t really separable, where the idea only counts once the hardware runs. I&rsquo;d rather spend a year making one thing genuinely work than move quickly across things that never leave the bench.</p>
+
+      <p>So what I&rsquo;m looking for next is an environment with real technical depth and a short path from an idea to something real: a group where the work is meant to end up in the world, in whatever form that takes. I&rsquo;m still figuring out the specifics, which is a fair part of why this page exists.</p>
+
+      <p>If you&rsquo;ve taken deep technical work and turned it into something people actually use, whether in a lab, a company, or somewhere in between, <strong>I&rsquo;d genuinely like to hear how that went</strong>. And if you&rsquo;re working anywhere near this intersection, I&rsquo;d like to hear about that too.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Get in touch</h2>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:22b3917@iitb.ac.in">
+        <span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 7 10 6 10-6"></path></svg>Institute email</span>
+        <span class="v">22b3917@iitb.ac.in</span>
+      </a>
+      <a class="contact-card" href="mailto:arnavaggarwal86@gmail.com">
+        <span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 7 10 6 10-6"></path></svg>Personal email</span>
+        <span class="v">arnavaggarwal86@gmail.com</span>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/arnav-agarwal-a77b15253/" target="_blank" rel="noopener">
+        <span class="k"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path></svg>LinkedIn</span>
+        <span class="v">arnav-agarwal</span>
+      </a>
+      <a class="contact-card" href="https://github.com/arnu123" target="_blank" rel="noopener">
+        <span class="k"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"></path></svg>GitHub</span>
+        <span class="v">arnu123</span>
+      </a>
+      <a class="contact-card" href="cv.pdf">
+        <span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h4"></path></svg>Résumé</span>
+        <span class="v">Download PDF</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Arnav Agarwal &middot; Mumbai</span>
+    <span>Indian Institute of Technology Bombay</span>
+  </footer>
+
+</div>
+</body>
+</html>
