@@ -56,14 +56,39 @@
 }
 </script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#9889;</text></svg>">
+<script>
+  try { if (localStorage.getItem("theme") === "light") document.documentElement.setAttribute("data-theme", "light"); } catch (e) {}
+</script>
 <title>Arnav Agarwal | IIT Bombay</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
 
 <style>
-  /* ---- tokens: light ---- */
+  /* ---- tokens: dark by default, light via [data-theme="light"] ---- */
   :root {
+    color-scheme: dark;
+    --ground:    #101318;
+    --surface:   #171B22;
+    --surface-2: #1C2129;
+    --line:      #272D37;
+    --line-soft: #1F242C;
+    --ink:       #E8EBF0;
+    --ink-mid:   #B9C1CD;
+    --ink-dim:   #939DAC;
+    --copper:    #D89158;
+    --copper-ink:#101318;
+    --teal:      #63B3AA;
+
+    --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    --measure: 62ch;
+    --shell: 940px;
+  }
+
+  :root[data-theme="light"] {
+    color-scheme: light;
     --ground:    #FBFAF7;
     --surface:   #FFFFFF;
     --surface-2: #F2EFE9;
@@ -75,13 +100,33 @@
     --copper:    #9A5320;
     --copper-ink:#FFFFFF;
     --teal:      #24655F;
-
-    --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-
-    --measure: 62ch;
-    --shell: 940px;
   }
+
+  /* ---- theme toggle ---- */
+  .theme-toggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 10;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink-mid);
+    cursor: pointer;
+    padding: 0;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .theme-toggle:hover { color: var(--copper); border-color: var(--copper); }
+  .theme-toggle:focus-visible { outline: 2px solid var(--copper); outline-offset: 3px; }
+  .theme-toggle svg { width: 17px; height: 17px; }
+  .theme-toggle .icon-sun  { display: block; }
+  .theme-toggle .icon-moon { display: none; }
+  :root[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
+  :root[data-theme="light"] .theme-toggle .icon-moon { display: block; }
 
   *, *::before, *::after { box-sizing: border-box; }
 
@@ -544,13 +589,17 @@
   }
 </style>
 <style>
-  :root { color-scheme: light; }
   body { margin: 0; }
   img { max-width: 100%; }
   [hidden] { display: none !important; }
 </style>
 </head>
 <body>
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme" title="Switch theme">
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path></svg>
+</button>
+
 <div class="shell">
 
   <header class="hero">
@@ -908,5 +957,21 @@
   </footer>
 
 </div>
+<script>
+  (function () {
+    var root = document.documentElement, btn = document.getElementById("themeToggle");
+    function sync() {
+      var light = root.getAttribute("data-theme") === "light";
+      btn.setAttribute("aria-label", light ? "Switch to dark theme" : "Switch to light theme");
+    }
+    btn.addEventListener("click", function () {
+      var light = root.getAttribute("data-theme") === "light";
+      if (light) root.removeAttribute("data-theme"); else root.setAttribute("data-theme", "light");
+      try { localStorage.setItem("theme", light ? "dark" : "light"); } catch (e) {}
+      sync();
+    });
+    sync();
+  })();
+</script>
 </body>
 </html>
