@@ -62,55 +62,25 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
 
 <style>
-  /* ---- tokens: dark-first ---- */
+  /* ---- tokens: light ---- */
   :root {
-    --ground:    #101318;
-    --surface:   #171B22;
-    --surface-2: #1C2129;
-    --line:      #272D37;
-    --line-soft: #1F242C;
-    --ink:       #E8EBF0;
-    --ink-mid:   #B9C1CD;
-    --ink-dim:   #939DAC;
-    --copper:    #D89158;
-    --copper-ink:#101318;
-    --teal:      #63B3AA;
+    --ground:    #FBFAF7;
+    --surface:   #FFFFFF;
+    --surface-2: #F2EFE9;
+    --line:      #DDD8CF;
+    --line-soft: #E9E5DE;
+    --ink:       #1A1D22;
+    --ink-mid:   #454C57;
+    --ink-dim:   #6B7380;
+    --copper:    #9A5320;
+    --copper-ink:#FFFFFF;
+    --teal:      #24655F;
 
     --sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
     --measure: 62ch;
     --shell: 940px;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) {
-      --ground:    #F7F6F3;
-      --surface:   #FFFFFF;
-      --surface-2: #FBFAF8;
-      --line:      #E0DCD4;
-      --line-soft: #EBE8E2;
-      --ink:       #191C21;
-      --ink-mid:   #4E5560;
-      --ink-dim:   #6E7683;
-      --copper:    #9C5620;
-      --copper-ink:#FFFFFF;
-      --teal:      #2C6F69;
-    }
-  }
-
-  :root[data-theme="light"] {
-    --ground:    #F7F6F3;
-    --surface:   #FFFFFF;
-    --surface-2: #FBFAF8;
-    --line:      #E0DCD4;
-    --line-soft: #EBE8E2;
-    --ink:       #191C21;
-    --ink-mid:   #4E5560;
-    --ink-dim:   #6E7683;
-    --copper:    #9C5620;
-    --copper-ink:#FFFFFF;
-    --teal:      #2C6F69;
   }
 
   *, *::before, *::after { box-sizing: border-box; }
@@ -321,7 +291,7 @@
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
   }
 
@@ -502,43 +472,41 @@
   .prose strong { color: var(--ink); font-weight: 500; }
 
   /* ---- contact ---- */
-  .contact-grid {
+  .contact-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 40px;
     margin-top: 4px;
   }
-  .contact-card {
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 18px;
-    background: var(--surface);
-    transition: border-color 0.15s ease;
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 0;
   }
-  .contact-card:hover { border-color: var(--copper); }
-  .contact-card .k {
+  .contact-item svg {
+    width: 18px;
+    height: 18px;
+    flex: none;
+    color: var(--copper);
+    margin-top: 3px;
+  }
+  .contact-item .k {
     font-family: var(--mono);
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink-dim);
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    margin-bottom: 8px;
+    display: block;
+    margin-bottom: 3px;
   }
-  .contact-card .k svg {
-    width: 14px;
-    height: 14px;
-    flex: none;
-    color: var(--copper);
-  }
-  .contact-card .v {
-    font-size: 15px;
+  .contact-item .v {
+    font-size: 16.5px;
     color: var(--ink);
     word-break: break-word;
+    text-decoration: none;
   }
-  .contact-card:hover .v { color: var(--teal); }
+  .contact-item .v:hover { color: var(--copper); text-decoration: underline; text-underline-offset: 3px; }
 
   footer {
     margin-top: 64px;
@@ -566,6 +534,8 @@
     .now-item { grid-template-columns: 1fr; gap: 4px; }
     .xp-row { grid-template-columns: 1fr; gap: 3px; }
     .built-row { grid-template-columns: 1fr; }
+    .contact-list { grid-template-columns: 1fr; }
+    .grid { grid-template-columns: 1fr; }
     .badge { justify-self: start; }
   }
 
@@ -574,7 +544,7 @@
   }
 </style>
 <style>
-  :root { color-scheme: light dark; }
+  :root { color-scheme: light; }
   body { margin: 0; }
   img { max-width: 100%; }
   [hidden] { display: none !important; }
@@ -904,27 +874,31 @@
 
   <section id="contact">
     <h2 class="section-title">Get in touch</h2>
-    <div class="contact-grid">
-      <a class="contact-card" href="mailto:22b3917@iitb.ac.in">
-        <span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 7 10 6 10-6"></path></svg>Institute email</span>
-        <span class="v">22b3917@iitb.ac.in</span>
-      </a>
-      <a class="contact-card" href="mailto:arnavaggarwal86@gmail.com">
-        <span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 7 10 6 10-6"></path></svg>Personal email</span>
-        <span class="v">arnavaggarwal86@gmail.com</span>
-      </a>
-      <a class="contact-card" href="https://www.linkedin.com/in/arnav-agarwal-a77b15253/" target="_blank" rel="noopener">
-        <span class="k"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path></svg>LinkedIn</span>
-        <span class="v">arnav-agarwal</span>
-      </a>
-      <a class="contact-card" href="https://github.com/arnavagarwal05" target="_blank" rel="noopener">
-        <span class="k"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"></path></svg>GitHub</span>
-        <span class="v">arnavagarwal05</span>
-      </a>
-      <a class="contact-card" href="cv.pdf">
-        <span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h4"></path></svg>Résumé</span>
-        <span class="v">Download PDF</span>
-      </a>
+    <div class="contact-list">
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 7 10 6 10-6"></path></svg>
+        <div><span class="k">Institute email</span><a class="v" href="mailto:22b3917@iitb.ac.in">22b3917@iitb.ac.in</a></div>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 7 10 6 10-6"></path></svg>
+        <div><span class="k">Personal email</span><a class="v" href="mailto:arnavaggarwal86@gmail.com">arnavaggarwal86@gmail.com</a></div>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"></path></svg>
+        <div><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/arnav-agarwal-a77b15253/" target="_blank" rel="noopener">linkedin.com/in/arnav-agarwal</a></div>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.2.5-2.3 1.3-3.1-.2-.4-.6-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.2 2.8.1 3.2.8.8 1.3 1.9 1.3 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"></path></svg>
+        <div><span class="k">GitHub</span><a class="v" href="https://github.com/arnavagarwal05" target="_blank" rel="noopener">github.com/arnavagarwal05</a></div>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M9 13h6M9 17h4"></path></svg>
+        <div><span class="k">R&eacute;sum&eacute;</span><a class="v" href="cv.pdf">Download PDF</a></div>
+      </div>
+      <div class="contact-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <div><span class="k">Based in</span><span class="v">Mumbai, India</span></div>
+      </div>
     </div>
   </section>
 
