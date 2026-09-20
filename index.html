@@ -660,7 +660,7 @@
   <section id="about">
     <h2 class="section-title">What I&rsquo;m after</h2>
     <div class="prose">
-      <p>I like problems that don&rsquo;t let you cheat. A network that has to fit in thirty kilobytes, a pipeline that has to hold 100&nbsp;MHz, a chip that either closes timing or doesn&rsquo;t. <strong>The constraint is the interesting part</strong>, because it forces you to understand the thing rather than throw capacity at it.</p>
+      <p>I like problems that don&rsquo;t let you cheat. A network that has to fit in thirty kilobytes, a pipeline that has to keep pace with a live camera, a chip that either closes timing or doesn&rsquo;t. <strong>The constraint is the interesting part</strong>, because it forces you to understand the thing rather than throw capacity at it.</p>
 
       <p>What keeps me in a project is <strong>seeing it all the way through</strong>. A result I can measure is good; a working thing someone can pick up and use is better. That&rsquo;s why I keep ending up on problems where the research and the engineering aren&rsquo;t really separable, where the idea only counts once the hardware runs. I&rsquo;d rather spend a year making one thing genuinely work than move quickly across things that never leave the bench.</p>
 
@@ -705,12 +705,14 @@
             <h4>Streaming Vision SoC</h4>
             <span class="card-meta">M.Tech thesis, IIT Bombay &middot; 2025&ndash;present</span>
           </div>
-          <p>A custom chip that processes a live camera feed in real time, small and efficient enough to sit inside a wearable device. I&rsquo;m designing it end to end, from the logic down to the physical layout that goes to the factory.</p>
+          <p>Algorithm-and-silicon co-design for a wearable vision implant. A fixed-point streaming front-end that never buffers a full camera frame, so the entire seven-stage pipeline runs in 8.56&nbsp;kB of on-chip memory. On top of it, NanoSeg: a segmentation CNN designed from scratch across seven documented iterations to run within the memory left over, 12.6&nbsp;kB of INT8 weights and 28.8&nbsp;kB total. Full RTL-to-GDS2 in TSMC 65&nbsp;nm; two IEEE papers.</p>
           <ul class="figs">
             <li><b>65</b> nm TSMC</li>
-            <li><b>100</b> MHz</li>
-            <li><b>6,778</b> &micro;m&sup2;</li>
-            <li><b>1.14</b> mW</li>
+            <li><b>0.81</b> mm&sup2;</li>
+            <li><b>9.5</b> mW</li>
+            <li><b>8.56</b> kB on-chip</li>
+            <li><b>12.6</b> kB INT8 CNN</li>
+            <li><b>21&times;</b> ENet acc/param</li>
           </ul>
         </article>
 
@@ -823,7 +825,7 @@
           <h4 class="pub-title">Hardware-Aware Semantic Segmentation Engine for On-Chip Retinal Prosthesis Navigation</h4>
           <p class="pub-venue">IEEE AICAS 2026 &middot; lecture presentation</p>
           <p class="pub-authors"><b>Arnav Agarwal</b>*, Daksh Sawke*, Laxmeesha Somappa &nbsp;<span style="color:var(--ink-dim)">*equal contribution</span></p>
-          <p class="pub-note">NanoSeg, a 12,880-parameter network that reads a scene into four navigation classes (traversable ground, obstacle, hazard, background) entirely on the implant chip, with no phone and no cloud. It fits in 29&nbsp;KB of on-chip memory and runs in 67&nbsp;ms, inside the budget of something worn on a pair of glasses.</p>
+          <p class="pub-note">Scene understanding designed to run entirely on the spectacle-mounted processor, with no phone and no cloud, inside the memory budget of a device worn on a pair of glasses. A 12.6&nbsp;kB CNN that reaches 21&times; ENet&rsquo;s accuracy per parameter.</p>
           <div class="pub-links">
             <a href="aicas2026.pdf">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>
@@ -838,7 +840,7 @@
           <h4 class="pub-title">An On-Chip Streaming Fixed-Point Vision Processing Pipeline for Epiretinal Prostheses</h4>
           <p class="pub-venue">IEEE APCCAS 2026 &middot; lecture presentation</p>
           <p class="pub-authors"><b>Arnav Agarwal</b>*, Daksh Sawke*, Laxmeesha Somappa &nbsp;<span style="color:var(--ink-dim)">*equal contribution</span></p>
-          <p class="pub-note">A seven-stage pipeline that turns a live camera feed into retinal stimulation signals with no frame buffer anywhere in the datapath. Implemented in TSMC 65&nbsp;nm CMOS at 0.81&nbsp;mm&sup2; and 9.5&nbsp;mW, and evaluated on what the user would actually perceive rather than on the image alone.</p>
+          <p class="pub-note">A seven-stage pipeline that turns a live camera feed into retinal stimulation signals never buffering a full frame anywhere in the datapath. Implemented in TSMC 65&nbsp;nm CMOS at 0.81&nbsp;mm&sup2; and 9.5&nbsp;mW, and evaluated on what the user would actually perceive rather than on the image alone.</p>
           <div class="pub-links">
             <a href="apccas2026.pdf">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>
